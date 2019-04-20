@@ -9,17 +9,18 @@ const config = {
 
 // create a simple feed forward neural network with backpropagation
 const net = new brain.NeuralNetwork(config);
+
+
 const trainingData = [
     {
-        input: "Pollo",
-        output: { asistencia: 0.5, dificultad: 2}
+        input: "Sugar",
+        output: { marron5: 1}
     },
     {
-        input: "Albione",
-        output: { gay: 1 }
+        input: "Sugar",
+        output: { soad: 1}
     }
 ];
-
 
 let trainedNet;
 
@@ -48,4 +49,4 @@ function execute(input) {
 }
 
 train(trainingData);
-execute("Pollo");
+execute("Sugar");
