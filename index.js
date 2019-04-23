@@ -4,7 +4,6 @@ var app = express();
 
 const port=process.env.PORT || 3000;
 
-/*
 // provide optional config object (or undefined). Defaults shown.
 const config = {
     binaryThresh: 0.5,
@@ -56,7 +55,7 @@ function execute(input) {
 
 train(trainingData);
 execute("Sugar");
-*/
+
 
 app.get('/', function (req, res) {
   res.send('Hola pedro!');
