@@ -2,6 +2,8 @@ var brain = require('brain.js')
 var express = require('express');
 var app = express();
 
+const port=process.env.PORT || 3000;
+
 /*
 // provide optional config object (or undefined). Defaults shown.
 const config = {
@@ -60,6 +62,6 @@ app.get('/', function (req, res) {
   res.send('Hola pedro!');
 });
 
-app.listen(80, function () {
-  console.log('Example app listening on port 80!');
+app.listen(port, function () {
+  console.log(`Server running at port `+port);
 });
