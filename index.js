@@ -66,7 +66,7 @@ app.get('/tokenhandler', function (req, res) {
 
 app.get('/', function (req, res) {
 var texto;
-Request.get("http://httpbin.org/ip", (error, response, body) => {
+Request.get("http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=argentina&api_key=f44de98e4c71e31cf33f0d7f478af1c3&format=json", (error, response, body) => {
     if(error) {
         texto = error;
     }
