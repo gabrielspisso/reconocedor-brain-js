@@ -70,6 +70,7 @@ Request.get("http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=
     if(error) {
         texto = error;
     }
+else
     texto = JSON.parse(body);
 });
 
