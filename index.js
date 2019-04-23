@@ -2,6 +2,7 @@ var brain = require('brain.js')
 var express = require('express');
 var app = express();
 
+/*
 // provide optional config object (or undefined). Defaults shown.
 const config = {
     binaryThresh: 0.5,
@@ -53,7 +54,7 @@ function execute(input) {
 
 train(trainingData);
 execute("Sugar");
-
+*/
 
 app.get('/', function (req, res) {
   res.send('Hola pedro!');
