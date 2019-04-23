@@ -56,9 +56,19 @@ function execute(input) {
 train(trainingData);
 execute("Sugar");
 
+let token="";
+
+app.get('/tokenhandler', function (req, res) {
+	token=req.query.token;
+	res.send('nada por aqui');
+});
 
 app.get('/', function (req, res) {
+
+if(token==="")
   res.send('Hola pedro!');
+else
+  res.send(token);
 });
 
 app.listen(port, function () {
