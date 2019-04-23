@@ -1,6 +1,7 @@
 var brain = require('brain.js')
 var express = require('express');
 var app = express();
+var Request = require("request");
 
 const port=process.env.PORT || 3000;
 
@@ -64,11 +65,15 @@ app.get('/tokenhandler', function (req, res) {
 });
 
 app.get('/', function (req, res) {
+var texto;
+Request.get("http://httpbin.org/ip", (error, response, body) => {
+    if(error) {
+        texto = error;
+    }
+    texto = JSON.parse(body);
+});
 
-if(token==="")
-  res.send('Hola pedro!');
-else
-  res.send(token);
+  res.send(texto);
 });
 
 app.listen(port, function () {
