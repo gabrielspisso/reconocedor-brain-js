@@ -4,7 +4,7 @@ module.exports = class Artista{
         this.nombre=nombre;
         this.id=id; 
         this.foto=foto;
+        this.canciones;
     }
-
 
 };

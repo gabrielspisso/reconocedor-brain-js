@@ -49,7 +49,11 @@ function processTrainingData(data) {
 
 function train(data) {
     let net = new brain.NeuralNetwork();
-    net.train(processTrainingData(data));
+
+    var aux = processTrainingData(data);
+console.log(aux)
+    net.train(aux);
+
     trainedNet = net.toFunction();
 };
 

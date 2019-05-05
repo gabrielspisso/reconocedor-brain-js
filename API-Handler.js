@@ -4,12 +4,10 @@ var Genius = require('genius-api')
 var cheerio  = require('cheerio')
 var Request = require("request");
 
-const accessToken = ''
+const accessToken = 'zrJSxLJMh-mV3z8Rkr8TMfJ19jWHS-3Du64LLWwEcyHIxI66WPgTMGecq4YppkIB'
 const genius = new Genius(accessToken)
 
 let listaArtistas = [];
-let airbag = new Artista("airbag","esta");
-listaArtistas.push(airbag);
 
 
 var exports = module.exports = {};
@@ -38,8 +36,10 @@ function parseSongHTML(htmlText) {
     const $ = cheerio.load(htmlText)
     var lyrics = $('.lyrics').text();
     lyrics = lyrics.replace(/(\r\n|\n|\r)/gm," ");//Le saco los enters
+    //lyrics = lyrics.replace(""," ");
     lyrics = lyrics.substring(37); //Le saco un espacio de 37 chars que tira genius
-    const titulo = $('.header_with_cover_art-primary_info-title').text();
+    lyrics = lyrics.substring(0,lyrics.length-35);//Le saco un espacio de 35 chars que tira genius
+    var titulo = $('.header_with_cover_art-primary_info-title').text();
     return new Cancion(titulo,lyrics);
   }
 
