@@ -15,16 +15,20 @@ const config = {
 
 // create a simple feed forward neural network with backpropagation
 const net = new brain.NeuralNetwork(config);
+let marron5 = {nombre: 'Maron 5', integrantes : 1};
+let soad = {nombre: 'System of a Down', integrantes : 4};
+let datosArtistas = [marron5,soad];
+
 
 
 const trainingData = [
     {
         input: "Sugar",
-        output: { marron5: 1}
+        output: { 0 : 1}
     },
     {
         input: "Sugar",
-        output: { soad: 1}
+        output: { 1 : 1 }
     }
 ];
 
@@ -51,12 +55,27 @@ function train(data) {
 
 function execute(input) {
     let results = trainedNet(encode(input));
-    console.log(results)
+    var indexes = [];
+    for(var index in results){
+        console.log(index);
+        console.log(datosArtistas[index]);
+    }
+
+    //console.log(indexes[0]) -> the name
+   // console.log(indexes[1]) -> the other name
+
+    //console.log(results[0])
 }
 
 train(trainingData);
 execute("Sugar");
 
+
+
+
+
+
+/*
 let token="";
 
 app.get('/tokenhandler', function (req, res) {
@@ -80,3 +99,5 @@ else
 app.listen(port, function () {
   console.log(`Server running at port `+port);
 });
+
+*/

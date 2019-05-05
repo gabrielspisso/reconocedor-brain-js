@@ -10,7 +10,7 @@ const config = {
 // create a simple feed forward neural network with backpropagation
 const net = new brain.NeuralNetwork(config);
 
-
+var trump = {name: "donald", age: 234};
 
 const trainingData = [
     {
@@ -102,9 +102,11 @@ function train(data) {
 
 function execute(input) {
     let results = trainedNet(encode(input));
-    console.log(results)
-    let output;
-    let certainty;
+    
+    
+    return results;
+
+    /*
     if (results.trump > results.kardashian) {
         output = 'Donald Trump'
         certainty = Math.floor(results.trump * 100)
@@ -114,7 +116,23 @@ function execute(input) {
     }
 
     return "I'm " + certainty + "% sure that tweet was written by " + output;
+
+    */
+
+
 }
 
 train(trainingData);
-console.log(execute("Paste your tweet here"));
+
+let data = execute("Thank you my BFF Allison");
+
+let primero, cont=0;
+
+for(firstKey in data){
+    if(cont==0)
+        primero=firstKey;
+    cont++;
+}
+ 
+console.log(eval(primero));
+console.log(data[firstKey]+"<br />");
