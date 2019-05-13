@@ -10,10 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.5.4",
     "brain.js": "^1.6.1",
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.16.4",
     "genius-api": "^0.4.1",
+    "lodash": "^4.17.11",
     "node-fetch": "^2.5.0",
     "request": "^2.88.0"
   }
