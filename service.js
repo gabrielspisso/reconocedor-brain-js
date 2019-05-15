@@ -10,8 +10,10 @@ class Service {
 
   }
 
-  agregarArtista() { 
-
+  agregarArtista(nombre) { 
+    return this.buscarArtista(nombre)
+      .then(({ id }) => geniusApi.cancionesDelArtista(id))
+      .tap(canciones => this.listaCanciones = this.listaCanciones.concat(canciones))
 
   }
 
