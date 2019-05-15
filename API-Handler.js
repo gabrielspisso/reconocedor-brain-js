@@ -1,6 +1,5 @@
 var Artista = require('./artista.js')
 var Cancion = require('./cancion.js')
-var Genius = require('genius-api')
 var cheerio  = require('cheerio')
 var Request = require("request");
 

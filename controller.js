@@ -1,3 +1,5 @@
+const service = require('./service');
+
 class Controller {
 
   verArtistas(req, res) {
@@ -13,7 +15,9 @@ class Controller {
 
   }
 
-  buscarArtista(req, res) {
+  buscarArtista({ query: { nombre } }, res) {
+    return service.buscarArtista(nombre)
+      .then(artista => res.json(artista));
 
   }
 
