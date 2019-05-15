@@ -2,7 +2,7 @@ const app = require('express')();
 const controller = require("./controller");
 const PORT = process.env.PORT || 9001;
 
-app.get('/', controller.verArtistas);
+app.get('/', controller.verBaseConocimiento);
 app.get('/buscarArtista', controller.buscarArtista);
 app.post('/agregar', controller.agregarArtista);
 app.post('/entrenarRed', controller.entrenarRed)

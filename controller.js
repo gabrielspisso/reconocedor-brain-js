@@ -2,9 +2,8 @@ const service = require('./service');
 
 class Controller {
 
-  verArtistas(req, res) {
-    
-
+  verBaseConocimiento(req, res) {
+    return res.json({ results: service.verBaseConocimiento() });
   }
 
   agregarArtista(req, res) {

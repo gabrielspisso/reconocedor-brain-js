@@ -11,23 +11,6 @@ let listaArtistas = [];
 
 var exports = module.exports = {};
 
-Genius.prototype.getArtistByName = function getArtistByName(artistName) {
-    const normalizeName = name => name.replace(/\./g, '').toLowerCase()   // regex removes dots
-    const artistNameNormalized = normalizeName(artistName)
-  
-    return this.search(artistName)
-      .then((response) => {
-        for (let i = 0; i < response.hits.length; i += 1) {
-          const hit = response.hits[i]
-          if (hit.type === 'song' && normalizeName(hit.result.primary_artist.name) === artistNameNormalized) {
-            return hit.result
-          }
-        }
-        throw new Error(`Did not find any songs whose artist is "${artistNameNormalized}".`)
-      })
-      .then(songInfo => new Artista(songInfo.primary_artist.name, songInfo.primary_artist.id, songInfo.primary_artist.image_url))
-  }
-  
 
 //Anda GENIAL
 

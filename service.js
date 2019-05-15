@@ -1,9 +1,12 @@
 const geniusApi = require("./geniusApi");
 
 class Service {
+  constructor() {
+    this.listaCanciones = [];
+  }
 
-  verArtistas() {
-    
+  verBaseConocimiento() {
+    return this.listaCanciones;
 
   }
 
@@ -18,7 +21,6 @@ class Service {
 
   buscarArtista(nombre) {
     return geniusApi.obtenerArtistaPorNombre(nombre);
-
   }
 
 }
