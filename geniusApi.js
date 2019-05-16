@@ -2,6 +2,7 @@ const accessToken = 'zrJSxLJMh-mV3z8Rkr8TMfJ19jWHS-3Du64LLWwEcyHIxI66WPgTMGecq4Y
 const Promise = require("bluebird");
 const Genius = require('genius-api');
 const lyricist = new (require('lyricist/node6'))(accessToken);
+const _ = require("lodash");
 
 class GeniusApi {
 
@@ -20,7 +21,7 @@ class GeniusApi {
     return Promise.resolve(this.api.songsByArtist(idArtista, { per_page: 5, sort: 'popularity'}))
       .get("songs")
       .map(({ id }) => lyricist.song(id, { fetchLyrics: true }))
-      .map(({ id, title: titulo, lyrics: letra, primary_artist: { id: idArtista } }) => ({ id, titulo, letra, idArtista }))
+      .map(({ id, title: titulo, lyrics: letra, primary_artist: { id: idArtista, name: artista } }) => ({ id, titulo, letra, idArtista, artista: _(artista).deburr().replace(/\W/g, '').substring(0, 16) }))
       
   }
 

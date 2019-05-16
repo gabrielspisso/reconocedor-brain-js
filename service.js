@@ -26,7 +26,8 @@ class Service {
 
   entrenarRed() {
     const cancionesProcesadas = this.procesarCanciones();
-    network.train(cancionesProcesadas);
+    console.log("AAA", cancionesProcesadas)
+    return network.train(cancionesProcesadas);
   }
 
   buscarArtista(nombre) {
@@ -39,11 +40,11 @@ class Service {
   }
 
   preguntar(titulo) {
-    return network.toFunction()(this.encode(titulo))
+    return network.run(this.encode(titulo))
   }
 
   procesarCanciones() {
-    return this.listaCanciones.map(({ idArtista, titulo }) => console.log("EEE", titulo) || ({ input: this.encode(titulo) , output: _.set({}, idArtista, 1)}) )
+    return this.listaCanciones.map(({ idArtista, titulo, artista }) =>  ({ input: this.encode(titulo) , output: JSON.parse(`{"${idArtista}": 1}`) }))
   }
 
   encode(titulo) {

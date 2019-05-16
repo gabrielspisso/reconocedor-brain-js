@@ -14,8 +14,8 @@ class Controller {
   }
 
   entrenarRed(req, res) {
-    service.entrenarRed();
-    return res.status(200).end();
+    const error = service.entrenarRed();
+    return res.json(error);
   }
 
   buscarArtista({ query: { nombre } }, res) {
@@ -26,7 +26,6 @@ class Controller {
 
   preguntar({ query: { titulo } }, res)
   {
-    console.log("EEE", titulo)
     const respuesta = service.preguntar(titulo);
     return res.json({ respuesta });
   }
