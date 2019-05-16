@@ -26,7 +26,6 @@ class Service {
 
   entrenarRed() {
     const cancionesProcesadas = this.procesarCanciones();
-    console.log("AAA", cancionesProcesadas)
     return network.train(cancionesProcesadas);
   }
 
@@ -40,15 +39,16 @@ class Service {
   }
 
   preguntar(titulo) {
+    console.log("RUN", this.encode(titulo))
     return network.run(this.encode(titulo))
   }
 
   procesarCanciones() {
-    return this.listaCanciones.map(({ idArtista, titulo, artista }) =>  ({ input: this.encode(titulo) , output: JSON.parse(`{"${idArtista}": 1}`) }))
+    return this.listaCanciones.map(({ idArtista, titulo, artista }) =>  console.log({ input: this.encode(titulo) , output: JSON.parse(`{"${idArtista}": 1}`) }) || ({ input: this.encode(titulo) , output: JSON.parse(`{"${idArtista}": 1}`) }))
   }
 
   encode(titulo) {
-    return titulo.split('').map(x => (x.charCodeAt(0) / 256));
+    return titulo.split('').map(x => console.log("SIDA", x.charCodeAt(0), (x.charCodeAt(0) / 256)) || (x.charCodeAt(0) / 256)).filter(it => it > 0 && it < 1);
   }
 
 
