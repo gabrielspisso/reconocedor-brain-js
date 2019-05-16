@@ -1,16 +1,17 @@
 const geniusApi = require("./geniusApi");
 const brain = require('brain.js')
-const network = new brain.NeuralNetwork({
+const config = {
   binaryThresh: 0.5,
   hiddenLayers: [3],     // array of ints for the sizes of the hidden layers in the network
   activation: 'sigmoid',  // supported activation types: ['sigmoid', 'relu', 'leaky-relu', 'tanh'],
   leakyReluAlpha: 0.01   // supported for activation type 'leaky-relu'
-});
+};
 const _ = require("lodash");
 
 class Service {
   constructor() {
     this.listaCanciones = [];
+    this.network = {}
   }
 
   verBaseConocimiento() {
@@ -26,7 +27,8 @@ class Service {
 
   entrenarRed() {
     const cancionesProcesadas = this.procesarCanciones();
-    return network.train(cancionesProcesadas);
+    this.network = new brain.NeuralNetwork();
+    return this.network.train(cancionesProcesadas);
   }
 
   buscarArtista(nombre) {
@@ -39,15 +41,17 @@ class Service {
   }
 
   preguntar(titulo) {
-    return network.run(this.encode(titulo))
+    console.log("RUN", this.encode(titulo))
+    return this.network.run(this.encode(titulo))
   }
 
   procesarCanciones() {
-    return this.listaCanciones.map(({ idArtista, titulo, artista }) =>  ({ input: this.encode(titulo) , output: _.set({}, idArtista, 1) }))
+    console.log("EEE", this.listaCanciones)
+    return this.listaCanciones.map(({ idArtista, titulo, artista }) =>  console.log({ input: this.encode(titulo) , output: JSON.parse(`{"${idArtista}": 1}`) }) || ({ input: this.encode(titulo) , output: JSON.parse(`{"${idArtista}": 1}`) }))
   }
 
   encode(titulo) {
-    return titulo.split('').map(x => (x.charCodeAt(0) / 256)).filter(it => it >= 0 && it <= 1);
+    return titulo.split('').map(x => console.log("SIDA", x.charCodeAt(0), (x.charCodeAt(0) / 256)) || (x.charCodeAt(0) / 256)).filter(it => it > 0 && it < 1);
   }
 
 
