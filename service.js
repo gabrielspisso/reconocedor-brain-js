@@ -13,8 +13,7 @@ class Service {
   agregarArtista(nombre) { 
     return this.buscarArtista(nombre)
       .then(({ id }) => geniusApi.cancionesDelArtista(id))
-      .tap(canciones => this.listaCanciones = this.listaCanciones.concat(canciones))
-
+      .then(canciones => this.agregarCanciones(canciones))
   }
 
   entrenarRed() {
@@ -23,6 +22,11 @@ class Service {
 
   buscarArtista(nombre) {
     return geniusApi.obtenerArtistaPorNombre(nombre);
+  }
+
+  agregarCanciones(canciones) {
+    this.listaCanciones = this.listaCanciones.concat(canciones);
+    return this.listaCanciones;
   }
 
 }

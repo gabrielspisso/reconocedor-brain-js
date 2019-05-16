@@ -18,8 +18,10 @@ class GeniusApi {
 
   cancionesDelArtista(idArtista) {
     return Promise.resolve(this.api.songsByArtist(idArtista, { per_page: 5, sort: 'popularity'}))
-      .map(({ id }) => lyricist.song(id, { fetch_lyrics: true }))
+      .get("songs")
+      .map(({ id }) => lyricist.song(id, { fetchLyrics: true }))
       .map(({ id, title, lyrics }) => ({ id, title, lyrics }))
+      
   }
 
 }

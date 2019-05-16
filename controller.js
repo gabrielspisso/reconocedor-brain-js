@@ -3,10 +3,13 @@ const service = require('./service');
 class Controller {
 
   verBaseConocimiento(req, res) {
-    return res.json({ results: service.verBaseConocimiento() });
+    const listaCanciones = service.verBaseConocimiento();
+    return res.json({ results: listaCanciones, count: listaCanciones.length });
   }
 
-  agregarArtista(req, res) {
+  agregarArtista({ query: { nombre } }, res) {
+    return service.agregarArtista(nombre)
+      .then((listaCanciones) => res.json({ results: listaCanciones, count: listaCanciones.length }))
 
   }
 
