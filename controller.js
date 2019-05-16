@@ -14,13 +14,21 @@ class Controller {
   }
 
   entrenarRed(req, res) {
-
+    service.entrenarRed();
+    return res.status(200).end();
   }
 
   buscarArtista({ query: { nombre } }, res) {
     return service.buscarArtista(nombre)
       .then(artista => res.json(artista));
 
+  }
+
+  preguntar({ query: { titulo } }, res)
+  {
+    console.log("EEE", titulo)
+    const respuesta = service.preguntar(titulo);
+    return res.json({ respuesta });
   }
 
 }

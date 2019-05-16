@@ -25,52 +25,9 @@ function parseSongHTML(htmlText) {
     return new Cancion(titulo,lyrics);
   }
 
-                                     
-  Genius.prototype.getSong = function getSong(geniusUrl) {
-    return fetch(geniusUrl, {
-      method: 'GET',
-    })
-    .then(response => {
-      if (response.ok) return response.text()
-      throw new Error('Could not get song url ...')
-    })
-    .then(parseSongHTML)
-  }
+                                    
 
 
-
-exports.agregarArtista = function agregarArtista(nombre){
-    genius.getArtistByName(nombre)
-    .then((artista) => {
-        listaArtistas.push(artista)
-        genius.songsByArtist(artista.id, {
-            per_page: 5,
-            sort: 'popularity',
-        })
-        .then((songs) => {
-            listaCanciones = [];
-            songs.songs.map(c => {
-                console.log(c.url)//----------> Se pasa la URL de la cancion
-                Request.get(c.url, (error, response, body) => {
-                    if(error) {
-                        texto = error;
-                    }
-                    else{
-                        var cancion = parseSongHTML(body);//-------------> esta funcion agarra el HTML y lo recontra parsea
-                        listaCanciones.push(cancion);
-                        console.log(cancion);
-                    }
-                });
-                console.log(listaCanciones)
-            })
-            artista.canciones=listaCanciones;
-        })
-    })
-
-}
-
-
-exports.verArtistas = listaArtistas;
 
 
 exports.buscarArtista = (nombre) => listaArtistas.find((artista) => artista.nombre == nombre);//esta linea me da cancer
