@@ -27,8 +27,9 @@ class Service {
 
   entrenarRed() {
     const cancionesProcesadas = this.procesarCanciones();
+    console.log("AAAAAAAAAAAAAAAAAAAAA",cancionesProcesadas)
     this.network = new brain.NeuralNetwork();
-    return this.network.train(cancionesProcesadas);
+    return this.network.train(cancionesProcesadas, { log: true });
   }
 
   buscarArtista(nombre) {
@@ -46,12 +47,11 @@ class Service {
   }
 
   procesarCanciones() {
-    console.log("EEE", this.listaCanciones)
     return this.listaCanciones.map(({ idArtista, titulo, artista }) =>  console.log({ input: this.encode(titulo) , output: JSON.parse(`{"${idArtista}": 1}`) }) || ({ input: this.encode(titulo) , output: JSON.parse(`{"${idArtista}": 1}`) }))
   }
 
   encode(titulo) {
-    return titulo.split('').map(x => console.log("SIDA", x.charCodeAt(0), (x.charCodeAt(0) / 256)) || (x.charCodeAt(0) / 256)).filter(it => it > 0 && it < 1);
+    return titulo.split('').map(x => x.charCodeAt(0) / 256).filter(it => it > 0 && it < 1);
   }
 
 
