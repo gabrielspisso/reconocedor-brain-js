@@ -21,7 +21,7 @@ class GeniusApi {
     return Promise.resolve(this.api.songsByArtist(idArtista, { per_page: 5, sort: 'popularity'}))
       .get("songs")
       .map(({ id }) => lyricist.song(id, { fetchLyrics: true }))
-      .map(({ id, title: titulo, lyrics: letra, primary_artist: { id: idArtista, name: artista } }) => ({ id, titulo, letra, idArtista, artista: _(artista).deburr().replace(/\W/g, '').substring(0, 16) }))
+      .map(({ id, title: titulo, lyrics: letra, primary_artist: { id: idArtista, name: artista } }) => ({ id, titulo, letra, idArtista, artista }))
       
   }
 

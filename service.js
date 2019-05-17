@@ -28,7 +28,7 @@ class Service {
   entrenarRed() {
     const cancionesProcesadas = this.procesarCanciones();
     this.network = new brain.NeuralNetwork();
-    return this.network.train(cancionesProcesadas, { log: true });
+    return this.network.train(cancionesProcesadas);
   }
 
   buscarArtista(nombre) {
@@ -41,7 +41,10 @@ class Service {
   }
 
   preguntar(titulo) {
-    return this.network.run(this.encode(titulo))
+    const resultado = this.network.run(this.encode(titulo));
+    return _(resultado)
+      .mapKeys((value, idArtista) => _.find(this.listaCanciones, { idArtista: parseInt(idArtista) }).artista)
+      .mapValues(value => `${value * 100}%`);
   }
 
   procesarCanciones() {
