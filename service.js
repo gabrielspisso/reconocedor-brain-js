@@ -51,7 +51,8 @@ class Service {
   }
 
   encode(titulo) {
-    return titulo.split('').map(x => x.charCodeAt(0) / 256).filter(it => it > 0 && it < 1);
+    const tituloChequeado = _.padEnd(titulo, 20)
+    return tituloChequeado.split('').map(x => x.charCodeAt(0) / 256).filter(it => it > 0 && it < 1);
   }
 
 
