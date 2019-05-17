@@ -7,10 +7,11 @@ const config = {
   leakyReluAlpha: 0.01   // supported for activation type 'leaky-relu'
 };
 const _ = require("lodash");
+const base = require("./base");
 
 class Service {
   constructor() {
-    this.listaCanciones = [];
+    this.listaCanciones = base;
     this.network = {}
   }
 
@@ -44,7 +45,7 @@ class Service {
     const resultado = this.network.run(this.encode(titulo));
     return _(resultado)
       .mapKeys((value, idArtista) => _.find(this.listaCanciones, { idArtista: parseInt(idArtista) }).artista)
-      .mapValues(value => `${value * 100}%`);
+      .mapValues(value => `${(value * 100).toFixed(2)}%`);
   }
 
   procesarCanciones() {
