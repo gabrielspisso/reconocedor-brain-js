@@ -1,4 +1,4 @@
-module.exports =  {
+module.exports =  [{
             "id": 2970719,
             "titulo": "Believer",
             "idArtista": 29472,
