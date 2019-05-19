@@ -23,7 +23,7 @@ class Service {
   entrenarRed() {
     const cancionesProcesadas = this.procesarCanciones();
     this.network = new brain.NeuralNetwork();
-    return this.network.train(cancionesProcesadas, { iterations: 100000, log: true });
+    return this.network.train(cancionesProcesadas, { iterations: process.env.ITERACIONES || 20000, log: true });
   }
 
   buscarArtista(nombre) {
