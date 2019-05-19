@@ -18,10 +18,10 @@ class GeniusApi {
   }
 
   cancionesDelArtista(idArtista) {
-    return Promise.resolve(this.api.songsByArtist(idArtista, { per_page: 50, sort: 'popularity'}))
+    return Promise.resolve(this.api.songsByArtist(idArtista, { per_page: 10, sort: 'popularity'}))
       .get("songs")
-      .map(({ id }) => lyricist.song(id, { fetchLyrics: true }))
-      .map(({ id, title: titulo, lyrics: letra, primary_artist: { id: idArtista, name: artista } }) => ({ id, titulo, letra, idArtista, artista }))
+      .map(({ id, title: titulo, primary_artist: { name: artista } }) => ({ id, titulo, idArtista, artista }))
+      .filter(({ artista }) => !_.includes(artista, "&"))
       
   }
 

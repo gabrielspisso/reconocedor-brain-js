@@ -4,12 +4,12 @@ class Controller {
 
   verBaseConocimiento(req, res) {
     const listaCanciones = service.verBaseConocimiento();
-    return res.json({ results: listaCanciones, count: listaCanciones.length });
+    return res.json({ count: listaCanciones.length, results: listaCanciones });
   }
 
   agregarArtista({ query: { nombre } }, res) {
     return service.agregarArtista(nombre)
-      .then((listaCanciones) => res.json({ results: listaCanciones, count: listaCanciones.length }))
+      .then((listaCanciones) => res.json({ count: listaCanciones.length, results: listaCanciones  }))
 
   }
 
