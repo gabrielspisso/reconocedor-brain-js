@@ -23,7 +23,7 @@ class Service {
   entrenarRed() {
     const cancionesProcesadas = this.procesarCanciones();
     this.network = new brain.NeuralNetwork();
-    return this.network.train(cancionesProcesadas, { iterations: process.env.iteraciones || 100000, log: true });
+    return this.network.train(cancionesProcesadas, { iterations: process.env.iteraciones || 20000, log: true });
   }
 
   buscarArtista(nombre) {
@@ -47,7 +47,7 @@ class Service {
   }
 
   encode(titulo) {
-    const tituloChequeado = _.padEnd(titulo, 20)
+    const tituloChequeado = _.padEnd(titulo.toLowerCase(), 20)
     const a = tituloChequeado.substring(0, 20)
     return a.split('').map(x => x.charCodeAt(0) / 256).filter(it => it > 0 && it < 1);
   }
