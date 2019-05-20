@@ -1,11 +1,5 @@
 const geniusApi = require("./geniusApi");
 const brain = require('brain.js')
-const config = {
-  binaryThresh: 0.5,
-  hiddenLayers: [3],     // array of ints for the sizes of the hidden layers in the network
-  activation: 'sigmoid',  // supported activation types: ['sigmoid', 'relu', 'leaky-relu', 'tanh'],
-  leakyReluAlpha: 0.01   // supported for activation type 'leaky-relu'
-};
 const _ = require("lodash");
 const base = require("./base");
 
@@ -30,7 +24,8 @@ class Service {
     const cancionesProcesadas = this.procesarCanciones();
     console.log(cancionesProcesadas)
     this.network = new brain.NeuralNetwork();
-    return this.network.train(cancionesProcesadas, {iterations: process.env.ITERACIONES || 20000, log: true });
+    return this.network.train(cancionesProcesadas, { iterations: process.env.ITERACIONES || 20000, log: true });
+
   }
 
   buscarArtista(nombre) {
