@@ -30,7 +30,7 @@ class Service {
     const cancionesProcesadas = this.procesarCanciones();
     console.log(cancionesProcesadas)
     this.network = new brain.NeuralNetwork();
-    return this.network.train(cancionesProcesadas);
+    return this.network.train(cancionesProcesadas, {iterations: process.env.ITERACIONES || 20000, log: true });
   }
 
   buscarArtista(nombre) {
@@ -46,7 +46,7 @@ class Service {
     const resultado = this.network.run(this.encode(titulo));
     return _(resultado)
       .mapKeys((value, idArtista) => _.find(this.listaCanciones, { idArtista: parseInt(idArtista) }).artista)
-      .mapValues(value => `${(value * 100).toFixed(2)}%`);
+      //.mapValues(value => `${(value * 100).toFixed(2)}%`);
   }
 
   procesarCanciones() {
@@ -54,8 +54,8 @@ class Service {
   }
 
   encode(titulo) {
-    const tituloChequeado = _.padEnd(titulo, 20)
-    const a = tituloChequeado.substr(0,20)
+    const tituloChequeado = _.padEnd(titulo.toLowerCase(), 60)
+    const a = tituloChequeado.substr(0,60)
     return a.split('').map(x => x.charCodeAt(0) / 256).filter(it => it > 0 && it < 1);
   }
 
