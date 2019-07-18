@@ -1,4 +1,4 @@
-const accessToken = 'zrJSxLJMh-mV3z8Rkr8TMfJ19jWHS-3Du64LLWwEcyHIxI66WPgTMGecq4YppkIB'
+const accessToken = ''
 const Promise = require("bluebird");
 const Genius = require('genius-api');
 const lyricist = new (require('lyricist/node6'))(accessToken);
